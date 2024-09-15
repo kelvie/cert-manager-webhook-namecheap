@@ -34,7 +34,8 @@ func main() {
 	// You can register multiple DNS provider implementations with a single
 	// webhook, where the Name() method will be used to disambiguate between
 	// the different implementations.
-	cmd.RunWebhookServer(GroupName,
+	cmd.RunWebhookServer(
+		GroupName,
 		&namecheapDNSProviderSolver{},
 	)
 }
@@ -243,7 +244,10 @@ func (c *namecheapDNSProviderSolver) getSecret(ref *cmmeta.SecretKeySelector, na
 	return &s, nil
 }
 
-func (c *namecheapDNSProviderSolver) setNamecheapClient(ch *v1alpha1.ChallengeRequest, cfg namecheapDNSProviderConfig) error {
+func (c *namecheapDNSProviderSolver) setNamecheapClient(
+	ch *v1alpha1.ChallengeRequest,
+	cfg namecheapDNSProviderConfig,
+) error {
 	apiKey, err := c.getSecret(cfg.APIKeySecretRef, ch.ResourceNamespace)
 	if err != nil {
 		return err
@@ -297,7 +301,7 @@ func (c *namecheapDNSProviderSolver) parseChallenge(ch *v1alpha1.ChallengeReques
 ) {
 
 	if zone, err = util.FindZoneByFqdn(
-		ch.ResolvedFQDN, util.RecursiveNameservers,
+		c.ctx, ch.ResolvedFQDN, util.RecursiveNameservers,
 	); err != nil {
 		return "", "", err
 	}
