@@ -27,6 +27,15 @@ service:
   type: ClusterIP
   port: 443
 
+# Set custom DNS resolvers for the webhook. This is useful if using coredns's host plugin to resolve
+# hostnames covered by any certificates you need to issue.
+dns: {}
+#  dnsPolicy: "None"
+#  dnsConfig:
+#    nameservers:
+#      - 9.9.9.9
+#      - 1.1.1.1
+#      - 9.9.9.10
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
