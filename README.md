@@ -10,14 +10,17 @@ Use helm to deploy this into your `cert-manager` namespace:
 # Make sure you're in the right context:
 # kubectl config use-context mycontext
 
+# Add the helm repository
+helm repo add namecheap-webhook https://pmarques.github.io/cert-manager-webhook-namecheap/
+
 # cert-manager is by default in the cert-manager context
-helm install -n cert-manager namecheap-webhook deploy/cert-manager-webhook-namecheap/
+helm install -n cert-manager namecheap-webhook namecheap-webhook/cert-manager-webhook-namecheap
 ```
 
 Create the cluster issuers:
 
 ``` sh
-helm install --set email=yourname@example.com -n cert-manager letsencrypt-namecheap-issuer deploy/letsencrypt-namecheap-issuer/
+helm install --set email=yourname@example.com -n cert-manager letsencrypt-namecheap-issuer namecheap-webhook/letsencrypt-namecheap-issuer
 ```
 
 Go to namecheap and set up your API key (note that you'll need to whitelist the
