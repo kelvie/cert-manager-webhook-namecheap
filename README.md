@@ -1,5 +1,7 @@
 # cert-manager webhook for Namecheap
 
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/pmarques/cert-manager-webhook-namecheap/badge)](https://scorecard.dev/viewer/?uri=github.com/pmarques/cert-manager-webhook-namecheap)
+
 # Instructions for use with Let's Encrypt
 
 Thanks to [Addison van den Hoeven](https://github.com/Addyvan), from https://github.com/jetstack/cert-manager/issues/646
